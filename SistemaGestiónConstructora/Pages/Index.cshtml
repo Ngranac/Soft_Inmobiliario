@@ -1,0 +1,108 @@
+﻿@page
+@model IndexModel
+@{
+    Layout = "Shared/_Login.cshtml";
+}
+
+<!--Inicio de sesión-->
+<div class="carousel">
+    <div class="carousel-item active">
+        <img src="~/img/CoIR1.jpg" class="d-block jumbotron-image" alt="ALESTE">
+    </div>
+    <div class="carousel-item">
+        <img src="~/img/COIR2.jpg" class="d-block jumbotron-image" alt="AVENIDA">
+    </div>
+    <div class="carousel-item">
+        <img src="~/img/cORR3.jpg" class="d-block jumbotron-image" alt="TorreU">
+    </div>
+    <div class="carousel-item">
+        <img src="~/img/CoI4.jpg" class="d-block jumbotron-image" alt="TorreU_2">
+    </div>
+</div>
+<div class="contenedor-login">
+    <div class="contenedor-login">
+        <div class="login-box">
+            <div class="card card-outline card-primary">
+                <div class="text-center">
+                    <div>
+                        <img class="img-login" src="/img/logo-azul.png" alt="Logo Compañía"
+                             width="80" />
+                    </div>
+                    <p class="titulo-sistema"><b> Sistema de Control<br />Inmobiliario</b></p>
+
+                </div>
+                <div class="card-body">
+                    <p class="login-box-msg text-center">Iniciar sesión</p>
+                    <form method="post">
+                        <div class="input-group form-outline mb-3" data-mdb-input-init>
+                            <input type="email" name="Correo" class="form-control" required />
+                            <label class="form-label" for="correo">Correo electrónico</label>
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-user"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="text-danger"></span>
+                        <div class="input-group  form-outline mb-3" data-mdb-input-init>
+                            <input type="password" name="Contrasenna" class="form-control" required />
+                            <label class="form-label" for="contrasena">Contraseña</label>
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-lock"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="text-danger"></span>
+                        <div class="row justify-content-md-center">
+                            <div asp-validation-summary="ModelOnly" class="text-danger "></div>
+                        </div>
+@*                         <div class="olvido">
+                            <a id="recuperar-btn" class="recuperar" data-dismiss="modal" href="@Url.Page("RecuperarContrasena")">
+                                <span>¿Olvidó su contraseña?</span>
+                            </a>
+                        </div> *@
+                        <br />
+                        <div class="row">
+                            <div class="col-12 ">
+                                <button type="submit" id="btnLogin" class="btn btn-primary btn-block">Ingresar</button>
+                            </div>
+                        </div>
+                    </form>
+                    <br />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    document.querySelectorAll('.form-outline').forEach((formOutline) => {
+        new mdb.Input(formOutline).init();
+    });
+
+</script>
+<script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.carousel-item');
+    const interval = 10000;
+
+    function showSlide(slideIndex) {
+        slides[currentSlide].classList.remove('active');
+        currentSlide = slideIndex;
+        slides[currentSlide].classList.add('active');
+    }
+
+    function nextSlide() {
+        const nextSlideIndex = (currentSlide + 1) % slides.length;
+        showSlide(nextSlideIndex);
+    }
+
+    function startCarousel() {
+        showSlide(0);
+        setInterval(nextSlide, interval);
+    }
+
+    startCarousel();
+
+
+</script>
