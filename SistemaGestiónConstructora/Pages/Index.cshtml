@@ -4,6 +4,9 @@
     Layout = "Shared/_Login.cshtml";
 }
 
+
+
+
 <!--Inicio de sesión-->
 <div class="carousel">
     <div class="carousel-item active">
@@ -13,7 +16,7 @@
         <img src="~/img/COIR2.jpg" class="d-block jumbotron-image" alt="AVENIDA">
     </div>
     <div class="carousel-item">
-        <img src="~/img/cORR3.jpg" class="d-block jumbotron-image" alt="TorreU">
+        <img src="~/img/cOIR3.jpg" class="d-block jumbotron-image" alt="TorreU">
     </div>
     <div class="carousel-item">
         <img src="~/img/CoI4.jpg" class="d-block jumbotron-image" alt="TorreU_2">
@@ -34,8 +37,8 @@
                 <div class="card-body">
                     <p class="login-box-msg text-center">Iniciar sesión</p>
                     <form method="post">
-                        <div class="input-group form-outline mb-3" data-mdb-input-init>
-                            <input type="email" name="Correo" class="form-control" required />
+                        <div class="input-group form-outline mb-3" data>
+                            <input type="text" name="Correo"  class="form-control" required />
                             <label class="form-label" for="correo">Correo electrónico</label>
                             <div class="input-group-append">
                                 <div class="input-group-text">
@@ -44,8 +47,8 @@
                             </div>
                         </div>
                         <span class="text-danger"></span>
-                        <div class="input-group  form-outline mb-3" data-mdb-input-init>
-                            <input type="password" name="Contrasenna" class="form-control" required />
+                        <div class="input-group  form-outline mb-3">
+                            <input type="password" name="Contrasenna" class="form-control"  required  />
                             <label class="form-label" for="contrasena">Contraseña</label>
                             <div class="input-group-append">
                                 <div class="input-group-text">
@@ -57,12 +60,11 @@
                         <div class="row justify-content-md-center">
                             <div asp-validation-summary="ModelOnly" class="text-danger "></div>
                         </div>
-@*                         <div class="olvido">
+                        <div class="olvido">
                             <a id="recuperar-btn" class="recuperar" data-dismiss="modal" href="@Url.Page("RecuperarContrasena")">
                                 <span>¿Olvidó su contraseña?</span>
                             </a>
-                        </div> *@
-                        <br />
+                        </div>
                         <div class="row">
                             <div class="col-12 ">
                                 <button type="submit" id="btnLogin" class="btn btn-primary btn-block">Ingresar</button>
@@ -74,7 +76,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> 
 <script>
     document.querySelectorAll('.form-outline').forEach((formOutline) => {
         new mdb.Input(formOutline).init();
