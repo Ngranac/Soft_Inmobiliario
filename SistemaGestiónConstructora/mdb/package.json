@@ -1,0 +1,10 @@
+{
+  "name": "mdb-ui-kit",
+  "version": "7.0.0",
+  "type": "module",
+  "main": "./js/mdb.umd.min.js",
+  "module": "./js/mdb.es.min.js",
+  "repository": "https://git.mdbootstrap.com/mdb/standard/mdb-ui-kit-pro-advanced",
+  "author": "MDBootstrap",
+  "license": "SEE LICENSE IN <License.pdf>"
+}

@@ -1,22 +1,302 @@
-html {
-  font-size: 14px;
-}
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-left: 50px;
+    margin-top: 20px;
+    transition: margin-left 300ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
 }
+
+main {
+    padding-right: 20px;
+    padding-left: 95px;
+    padding-top: 50px;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif !important;
+}
+
+header {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    background-color: #ffffff;
+    z-index: 200;
+    box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 17px 17px -20px, rgba(255, 255, 255, 0.1) 0px 0px 10px -20px;
+}
+
+
+
+#editar {
+    color: #1D428A;
+}
+
+.logo-nav {
+    width: 12em;
+    margin-left: 9em;
+}
+
+/*   Menu Lateral */
+.tituloH {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.1em;
+    font-weight: 600;
+    color: #474747;
+    padding-left: 85px;
+    padding-top: 15px !important;
+}
+
+
+.icon__menu {
+    width: 50px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateX(75px);
+}
+
+    .icon__menu i {
+        color: #1d428a;
+        font-size: 22px;
+        cursor: pointer;
+        position: absolute;
+    }
+
+span img {
+    width: 10.5em;
+    transform: translate(-15px, -10px);
+}
+
+.menu__side {
+    width: 75px;
+    height: 100%;
+    background: #1d428a;
+    position: fixed;
+    top: 0;
+    left: 0;
+    color: white;
+    font-size: 18px;
+    z-index: 300;
+    overflow: hidden;
+    overflow-y: scroll;
+    border-right: 15px solid #1d428a;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    transition: all 300ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
+}
+
+    .menu__side::-webkit-scrollbar {
+        display: none;
+    }
+
+
+.menu__side {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+
+.nombre_pagina {
+    padding: 20px 30px;
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+    .nombre_pagina i {
+        width: 20px;
+        margin-right: 20px;
+    }
+
+
+.opciones__menu {
+    padding: 20px 30px;
+    position: absolute;
+    top: 80px;
+}
+
+    .opciones__menu a {
+        color: #ffffffb2;
+        cursor: default;
+        display: block;
+        position: relative;
+        transition: color 300ms;
+        text-decoration: none;
+    }
+
+        .opciones__menu a:hover {
+            color: white;
+            text-decoration: none;
+        }
+
+    .opciones__menu .option {
+        padding: 20px 0px;
+        display: flex;
+        align-items: center;
+        position: relative;
+        text-decoration: none;
+    }
+
+        .opciones__menu .option i {
+            width: 20px;
+            margin-right: 20px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .opciones__menu .option label {
+            cursor: pointer;
+            font-size: 15px;
+            text-decoration: none;
+            font-weight: 200;
+            transform: translate(4px,2px);
+        }
+
+    .opciones__menu a .seleccionado {
+        color: #ffffff !important;
+    }
+
+a.seleccionado {
+    color: #fff;
+}
+
+.seleccionado:before {
+    content: '';
+    width: 40px;
+    height: 65%;
+    background: rgba(255, 255, 255, 0.1);
+    position: absolute;
+    left: -10px;
+    border-radius: 8px !important;
+    top: 11px !important;
+}
+
+.body_move {
+    margin-left: 150px;
+}
+
+.menu__side_move {
+    width: 225px;
+}
+
+    .menu__side_move .seleccionado:before {
+        content: '';
+        width: 170px;
+        height: 65%;
+        background: rgba(255, 255, 255, 0.1);
+        position: absolute;
+        left: -10px;
+        border-radius: 8px !important;
+        top: 11px !important;
+    }
+
+    .menu__side_move .menu__side {
+        width: 75px;
+        height: 100%;
+        background: #1d428a;
+        position: fixed;
+        top: 0;
+        left: 0;
+        color: white;
+        font-size: 18px;
+        z-index: 300;
+        overflow: hidden;
+        overflow-y: scroll;
+        border-right: 15px solid #1d428a;
+        transition: all 300ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    }
+/*
+//////////////////////////////////
+Inicia Menu superior
+/////////////////////////////////
+*/
+
+.linea-titulo {
+    margin-bottom: 0.5em;
+}
+
+.agregar-cliente {
+    text-align: right;
+}
+.titulos_azul {
+    color: #1d428a;
+
+
+}
+
+
+.dt-button {
+    padding: 0 !important;
+    border-radius: 4px 4px 4px 4px !important;
+    font-size: 18px !important;
+    outline: none !important;
+    cursor: pointer !important;
+    background-color: transparent !important;
+    height: 2.3em !important;
+    width: 2.4em !important;
+    border: none !important;
+}
+
+
+.btnTable {
+    font-size: 1em;
+    background-color: #1d428a !important;
+    border-radius: 4px 4px 4px 4px !important;
+    color: #ffffff !important;
+    outline: none !important;
+    cursor: pointer;
+    height: 3em !important;
+    width: 10em !important;
+    border: none !important;
+}
+
+    .btnTable:hover {
+        background-color: #426da9 !important;
+        color: #FFFFFF !important;
+    }
+.btnTableSecond {
+    font-size: 1em;
+    border-radius: 4px 4px 4px 4px !important;
+    outline: none !important;
+    cursor: pointer;
+    height: 2.3em !important;
+    width: 2.4em !important;
+    background-color: white;
+    border: 2px solid #E3EBF7 !important;
+    color: #1D428A;
+}
+
+    .btnTableSecond:hover {
+        background-color: #E3EBF7 !important;
+        color: #1D428A !important;
+    }
+
+.btnTableprimary {
+    font-size: 1em;
+    border-radius: 4px 4px 4px 4px !important;
+    outline: none !important;
+    cursor: pointer;
+    height: 2.3em !important;
+    width: 2.4em !important;
+    background-color: #1d428a;
+    border: 2px solid #1d428a !important;
+    color: white;
+}
+
+    .btnTableprimary:hover {
+        background-color: #426da9 !important;
+        color: white !important;
+    }

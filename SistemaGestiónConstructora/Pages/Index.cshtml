@@ -4,22 +4,19 @@
     Layout = "Shared/_Login.cshtml";
 }
 
-
-
-
 <!--Inicio de sesión-->
 <div class="carousel">
     <div class="carousel-item active">
-        <img src="~/img/CoIR1.jpg" class="d-block jumbotron-image" alt="ALESTE">
+        <img src="~/img/ed1C.jpg" class="d-block jumbotron-image" alt="ALESTE">
     </div>
     <div class="carousel-item">
-        <img src="~/img/COIR2.jpg" class="d-block jumbotron-image" alt="AVENIDA">
+        <img src="~/img/ed1C.jpg" class="d-block jumbotron-image" alt="AVENIDA">
     </div>
     <div class="carousel-item">
-        <img src="~/img/cOIR3.jpg" class="d-block jumbotron-image" alt="TorreU">
+        <img src="~/img/ed1C.jpg" class="d-block jumbotron-image" alt="TorreU">
     </div>
     <div class="carousel-item">
-        <img src="~/img/CoI4.jpg" class="d-block jumbotron-image" alt="TorreU_2">
+        <img src="~/img/ed1C.jpg" class="d-block jumbotron-image" alt="TorreU_2">
     </div>
 </div>
 <div class="contenedor-login">
@@ -28,8 +25,8 @@
             <div class="card card-outline card-primary">
                 <div class="text-center">
                     <div>
-                        <img class="img-login" src="/img/logo-azul.png" alt="Logo Compañía"
-                             width="80" />
+                        <img class="img-login" src="/img/LG.png" alt="Logo Compañía"
+                             width="250" />
                     </div>
                     <p class="titulo-sistema"><b> Sistema de Control<br />Inmobiliario</b></p>
 
@@ -56,19 +53,21 @@
                                 </div>
                             </div>
                         </div>
-                        <span class="text-danger"></span>
-                        <div class="row justify-content-md-center">
-                            <div asp-validation-summary="ModelOnly" class="text-danger "></div>
-                        </div>
-                        <div class="olvido">
-                            <a id="recuperar-btn" class="recuperar" data-dismiss="modal" href="@Url.Page("RecuperarContrasena")">
-                                <span>¿Olvidó su contraseña?</span>
+                        <div class="Registrase text-center ">
+                            <a id="registrarse-btn" class="recuperar" data-dismiss="modal" href="@Url.Page("Registrarse")">
+                                <span>¿No tienes una cuenta? Registrarse</span>
                             </a>
                         </div>
+                        <br />
                         <div class="row">
                             <div class="col-12 ">
                                 <button type="submit" id="btnLogin" class="btn btn-primary btn-block">Ingresar</button>
                             </div>
+                        </div>
+                        <br />
+                        <span class="text-danger text-danger"></span>
+                        <div class="row justify-content-md-center">
+                            <div asp-validation-summary="ModelOnly" class="text-danger "></div>
                         </div>
                     </form>
                     <br />

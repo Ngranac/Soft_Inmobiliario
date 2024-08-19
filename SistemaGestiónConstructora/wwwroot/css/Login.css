@@ -82,6 +82,11 @@ header {
     padding-top: 5rem !important;
 }
 
+
+.fa-solid{
+    color: #1d428a !important;
+}
+
 .responsive-image {
     max-width: 100%;
     height: auto;
@@ -119,4 +124,21 @@ header {
 .btn-capitalize {
     text-transform: capitalize !important;
     font-size: 13px !important;
+}
+
+/* Para navegadores Webkit (Chrome, Safari, Edge) */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Para Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+#registrarse-btn{
+    text-decoration: none !important;
+    color: #426da9 !important
 }

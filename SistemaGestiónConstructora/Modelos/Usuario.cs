@@ -1,6 +1,8 @@
-﻿namespace SistemaGestiónConstructora.Modelos
+﻿using Microsoft.AspNetCore.Mvc;
+
+namespace SistemaGestiónConstructora.Modelos
 {
-    public class Usuario
+    public class Usuario : Controller
     {
         public int IdUsuario { get; set; }
         public string Correo { get; set; }

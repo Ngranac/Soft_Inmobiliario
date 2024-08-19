@@ -2,3 +2,63 @@
 @model SistemaGestiónConstructora.Pages.DashboardModel
 @{
 }
+
+<main>
+    <br />
+    <h4 class="titulos_azul">Información Proyectos</h4>
+    <br>
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-7">
+                    <h4>Proyectos</h4>
+                </div>
+                <div class="col-md-3">
+                    <div class="input-group">
+                        <div class="form-outline" data-mdb-input-init>
+                            <input type="search" class="form-control" />
+                            <label class="form-label" for="search-input">Buscar Proyecto</label>
+                        </div>
+                        <button type="button" class="btn btn-primary">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <button type="button" class="btn btn-outline-primary" data-mdb-ripple-init data-mdb-ripple-color="dark"><i class="fa-solid fa-plus"></i>&ensp;Agregar Proyecto</button>
+
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table id="Proyectos" class="table align-middle mb-0 bg-white">
+        <thead>
+            <tr>
+                <th>ID Proyecto</th>
+                <th>Nombre</th>
+                <th>Código Postal</th>
+                <th>Fecha Inicio</th>
+                <th>Fecha Finalización</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var proyecto in Model.Proyectos)
+            {
+                <tr>
+                    <td>@proyecto.Id</td>
+                    <td>@proyecto.Nombre</td>
+                    <td>@proyecto.CodigoPostal</td>
+                    <td>@proyecto.FechaInicio.ToString("dd/MM/yyyy")</td>
+                    <td>@proyecto.FechaFinalizacion.ToString("dd/MM/yyyy")</td>
+                    <td>@(proyecto.Estado == 1 ? "Activo" : proyecto.Estado == 2 ? "Inactivo" : proyecto.Estado == 3 ? "Pendiente" : "Suspendido")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+            </div>
+    </div>
+    </div>
+</main>
+<script type="text/javascript">
+
+</script>

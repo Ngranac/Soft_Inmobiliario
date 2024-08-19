@@ -55,7 +55,7 @@ namespace SistemaGestiónConstructora.Pages
                         else
                         {
                             // Credenciales inválidas
-                            ModelState.AddModelError(string.Empty, "Correo o contraseña incorrectos.");
+                            ModelState.AddModelError(string.Empty, "Credenciales incorrectas.");
                             return Page();
                         }
                     }
