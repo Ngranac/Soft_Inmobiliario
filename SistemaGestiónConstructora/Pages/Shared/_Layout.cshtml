@@ -38,27 +38,27 @@
                     <label>Clientes</label>
                 </div>
             </a>
-            <a asp-page="../Alertas/Alertas">
+            <a asp-page="/Bodegas">
                 <div class="option">
                     <i class="fa-regular fa-warehouse"></i>
                     <label>Bodegas</label>
                 </div>
             </a>
 
-            <a asp-page="../Reportes/Reportes">
+            <a asp-page="/Facturacion">
                 <div class="option text-center">
                     <i class="fa-light fa-memo-pad"></i>
                     <label>Facturación</label>
                 </div>
             </a>
 
-            <a asp-page="../SICVECA/Cuentas">
+            <a asp-page="/Empleados">
                 <div class="option">
                     <i class="fa-solid fa-people"></i>
                     <label>Empleados</label>
                 </div>
             </a>
-            <a asp-page="../Configuracion/Configuracion">
+            <a asp-page="/Configuracion">
                 <div class="option">
                     <i class="fa-light fa-gear" title="Configuracion"></i>
                     <label>Configuración</label>
@@ -101,80 +101,6 @@
     }
     <!--Add datatables-->
     <script>
-
-        $(document).ready(function () {
-            var table = $('#valores').DataTable({
-                info: false,
-                ordering: true,
-                "dom": 'rtip',
-                responsive: true,
-                language: {
-                    "decimal": "",
-                    "emptyTable": "No hay información",
-                    "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
-                    "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
-                    "infoFiltered": "(Filtrado de _MAX_ total entradas)",
-                    "infoPostFix": "",
-                    "thousands": ",",
-                    "lengthMenu": "Mostrar _MENU_ Entradas",
-                    "loadingRecords": "Cargando...",
-                    "processing": "Procesando...",
-                    "search": "Buscar:",
-                    "zeroRecords": "Sin resultados encontrados",
-                    "paginate": {
-                        "first": "Primero",
-                        "last": "Ultimo",
-                        "next": "Siguiente",
-                        "previous": "Anterior"
-                    }
-                },
-            });
-        });
-        $(document).ready(function () {
-            var table = $('#calificaciones').DataTable({
-                info: false,
-                ordering: true,
-                dom: 'Brtip',
-                buttons: [
-
-                    {
-                        extend: 'csv',
-                        text: '<button class="btnTableSecond"><i class="fa-light fa-file-csv"></i></button>',
-                    },
-                    {
-                        extend: 'excel',
-                        text: '<button class="btnTableprimary"><i class="fa-light fa-file-xls"></i></button>',
-                    },
-                    {
-                        extend: 'pdf',
-                        text: '<button class="btnTableSecond"><i class="fa-light fa-file-pdf"></i></button>',
-                    },
-                ],
-                responsive: true,
-                language: {
-                    "decimal": "",
-                    "emptyTable": "No hay información",
-                    "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
-                    "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
-                    "infoFiltered": "(Filtrado de _MAX_ total entradas)",
-                    "infoPostFix": "",
-                    "thousands": ",",
-                    "lengthMenu": "Mostrar _MENU_ Entradas",
-                    "loadingRecords": "Cargando...",
-                    "processing": "Procesando...",
-                    "search": "Buscar:",
-                    "zeroRecords": "Sin resultados encontrados",
-                    "paginate": {
-                        "first": "Primero",
-                        "last": "Ultimo",
-                        "next": "Siguiente",
-                        "previous": "Anterior"
-                    }
-                },
-            });
-        });
-
-
         $(document).ready(function () {
             var table = $('#Proyectos').DataTable({
 
@@ -226,7 +152,106 @@
                     }
                 },
             });
+            $(document).ready(function () {
+                var table = $('#Proyectos').DataTable(); // Inicializar el datatable
+                $("#search-input").on("input", function () {
+                    var value = $(this).val().toLowerCase();
+                    // Filtrar en todas las páginas
+                    table.search(value).draw();
+                });
+            });
+
         });
+        $(document).ready(function () {
+            var table = $('#Empleados').DataTable({
+                info: false,
+                ordering: true,
+                "dom": 'rtip',
+                responsive: true,
+                language: {
+                    "decimal": "",
+                    "emptyTable": "No hay información",
+                    "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+                    "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+                    "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+                    "infoPostFix": "",
+                    "thousands": ",",
+                    "lengthMenu": "Mostrar _MENU_ Entradas",
+                    "loadingRecords": "Cargando...",
+                    "processing": "Procesando...",
+                    "search": "Buscar:",
+                    "zeroRecords": "Sin resultados encontrados",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Ultimo",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                },
+            });
+            $(document).ready(function () {
+                var table = $('#Empleados').DataTable(); // Inicializar el datatable
+                $("#search-inputEmpleados").on("input", function () {
+                    var value = $(this).val().toLowerCase();
+                    // Filtrar en todas las páginas
+                    table.search(value).draw();
+                });
+            });
+        });
+        $(document).ready(function () {
+            var table = $('#Clientes').DataTable({
+                info: false,
+                ordering: true,
+                dom: 'Brtip',
+                buttons: [
+
+                    {
+                        extend: 'csv',
+                        text: '<button class="btnTableSecond"><i class="fa-light fa-file-csv"></i></button>',
+                    },
+                    {
+                        extend: 'excel',
+                        text: '<button class="btnTableprimary"><i class="fa-light fa-file-xls"></i></button>',
+                    },
+                    {
+                        extend: 'pdf',
+                        text: '<button class="btnTableSecond"><i class="fa-light fa-file-pdf"></i></button>',
+                    },
+                ],
+                responsive: true,
+                language: {
+                    "decimal": "",
+                    "emptyTable": "No hay información",
+                    "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+                    "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+                    "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+                    "infoPostFix": "",
+                    "thousands": ",",
+                    "lengthMenu": "Mostrar _MENU_ Entradas",
+                    "loadingRecords": "Cargando...",
+                    "processing": "Procesando...",
+                    "search": "Buscar:",
+                    "zeroRecords": "Sin resultados encontrados",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Ultimo",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                },
+            });
+            $(document).ready(function () {
+                var table = $('#Clientes').DataTable(); // Inicializar el datatable
+                $("#search-inputClientes").on("input", function () {
+                    var value = $(this).val().toLowerCase();
+                    // Filtrar en todas las páginas
+                    table.search(value).draw();
+                });
+            });
+        });
+
+
+        
         $(document).ready(function () {
             var table = $('#Archivos').DataTable({
 

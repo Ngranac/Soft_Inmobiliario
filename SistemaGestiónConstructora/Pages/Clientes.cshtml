@@ -2,16 +2,101 @@
 @model SistemaGestiónConstructora.Pages.ClientesModel
 @{
 }
+
 <main>
-    <select data-mdb-select-init multiple>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
-        <option value="4">Four</option>
-        <option value="5">Five</option>
-        <option value="6">Six</option>
-        <option value="7">Seven</option>
-        <option value="8">Eight</option>
-    </select>
-    <label class="form-label select-label">Example label</label>
+    <br />
+    <h4 class="titulos_azul">Información Clientes</h4>
+    <br>
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-7">
+                    <h4>Clientes</h4>
+                </div>
+                <div class="col-md-3">
+                    <div class="input-group">
+                        <div class="form-outline" data-mdb-input-init>
+                            <input type="search" id="search-inputClientes" class="form-control" />
+                            <label class="form-label" for="search-inputClientes">Buscar Clientes</label>
+                        </div>
+                        <button type="button" class="btn btn-primary">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <button type="button" data-bs-toggle="modal" data-bs-target="#createModal" class="btn btn-outline-primary" data-mdb-ripple-init data-mdb-ripple-color="dark"><i class="fa-solid fa-plus"></i>&ensp;Agregar Cliente</button>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table id="Clientes" class="table align-middle mb-0 bg-white">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Correo</th>
+                            <th>Teléfono</th>
+                            <th>Código Postal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var cliente in Model.Clientes)
+                        {
+                            <tr>
+                                <td>@cliente.IdCliente</td>
+                                <td>@cliente.NombreCliente</td>
+                                <td>@cliente.CorreoCliente</td>
+                                <td>@cliente.TelefonoCliente</td>
+                                <td>@cliente.CodigoPostal</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="createModalLabel">Agregar Cliente</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form method="post" asp-page-handler="Create">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="id_Cliente" class="form-label">Identificación Cliente</label>
+                            <input type="number" class="form-control" id="id_Cliente" name="Cliente.IdCliente" required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="nombre_cliente" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" id="nombre_cliente" name="Cliente.NombreCliente" required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="correo_cliente" class="form-label">Correo</label>
+                            <input type="email" class="form-control" id="correo_cliente" name="Cliente.CorreoCliente" required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="telefono_cliente" class="form-label">Teléfono</label>
+                            <input type="number" class="form-control" id="telefono_cliente" name="Cliente.TelefonoCliente" required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="codigo_Postal" class="form-label">Código Postal</label>
+                            <select class="form-control" id="codigo_Postal" name="Cliente.CodigoPostal" required>
+                                <option selected disabled value="">Seleccione una opción</option>
+                                @foreach (var codigo in Model.CodigosPostales)
+                                {
+                                    <option value="@codigo">@codigo</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </main>

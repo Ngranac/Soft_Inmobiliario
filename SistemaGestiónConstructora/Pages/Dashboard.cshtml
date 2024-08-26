@@ -16,7 +16,7 @@
                 <div class="col-md-3">
                     <div class="input-group">
                         <div class="form-outline" data-mdb-input-init>
-                            <input type="search" class="form-control" />
+                            <input type="search" id="search-input" class="form-control" />
                             <label class="form-label" for="search-input">Buscar Proyecto</label>
                         </div>
                         <button type="button" class="btn btn-primary">
@@ -25,7 +25,7 @@
                     </div>
                 </div>
                 <div class="col-md-2">
-                    <button type="button" class="btn btn-outline-primary" data-mdb-ripple-init data-mdb-ripple-color="dark"><i class="fa-solid fa-plus"></i>&ensp;Agregar Proyecto</button>
+                    <button type="button" data-bs-toggle="modal" data-bs-target="#createModal" class="btn btn-outline-primary" data-mdb-ripple-init data-mdb-ripple-color="dark"><i class="fa-solid fa-plus"></i>&ensp;Agregar Proyecto</button>
 
                 </div>
             </div>
@@ -39,6 +39,7 @@
                 <th>Fecha Inicio</th>
                 <th>Fecha Finalización</th>
                 <th>Estado</th>
+                            <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -51,14 +52,137 @@
                     <td>@proyecto.FechaInicio.ToString("dd/MM/yyyy")</td>
                     <td>@proyecto.FechaFinalizacion.ToString("dd/MM/yyyy")</td>
                     <td>@(proyecto.Estado == 1 ? "Activo" : proyecto.Estado == 2 ? "Inactivo" : proyecto.Estado == 3 ? "Pendiente" : "Suspendido")</td>
-                </tr>
+                                <td>
+                                    <!-- Botón de edición -->
+                                    <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editModal" data-id="@proyecto.Id" data-nombre="@proyecto.Nombre" data-codigopostal="@proyecto.CodigoPostal" data-fechainicio="@proyecto.FechaInicio.ToString("yyyy-MM-dd")" data-fechafinalizacion="@proyecto.FechaFinalizacion.ToString("yyyy-MM-dd")" data-estado="@proyecto.Estado">
+                                        <i class="fas fa-edit"></i> Editar
+                                    </button>
+                                </td>
+                            </tr>
             }
         </tbody>
     </table>
             </div>
     </div>
     </div>
+    <!-- Modal de creación -->
+    <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="createModalLabel">Agregar Nuevo Proyecto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="createForm" method="post" asp-page-handler="CrearProyecto">
+                        <div class="mb-3">
+                            <label for="createNombre" class="form-label">Nombre del Proyecto</label>
+                            <input type="text" class="form-control" id="createNombre" name="Proyecto.Nombre" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="createCodigoPostal" class="form-label">Código Postal</label>
+                            <input type="text" class="form-control" id="createCodigoPostal" name="Proyecto.CodigoPostal" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="createFechaInicio" class="form-label">Fecha de Inicio</label>
+                            <input type="date" class="form-control" id="createFechaInicio" name="Proyecto.FechaInicio" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="createFechaFinalizacion" class="form-label">Fecha de Finalización</label>
+                            <input type="date" class="form-control" id="createFechaFinalizacion" name="Proyecto.FechaFinalizacion" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="createEstado" class="form-label">Estado</label>
+                            <select class="form-select" id="createEstado" name="Proyecto.Estado" required>
+                                <option value="1">Activo</option>
+                                <option value="2">Inactivo</option>
+                                <option value="3">Pendiente</option>
+                                <option value="4">Suspendido</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary" form="createForm">Guardar Proyecto</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal de edición -->
+    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">Editar Proyecto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editForm" method="post" asp-page-handler="ActualizarProyecto">
+                        <div class="mb-3">
+                            <label for="editNombre" class="form-label">Nombre del Proyecto</label>
+                            <input type="text" class="form-control" id="editNombre" name="Proyecto.Nombre" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editCodigoPostal" class="form-label">Código Postal</label>
+                            <input type="text" disabled class="form-control" id="editCodigoPostal" name="Proyecto.CodigoPostal" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editFechaInicio" class="form-label">Fecha de Inicio</label>
+                            <input type="date" class="form-control" id="editFechaInicio" name="Proyecto.FechaInicio" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editFechaFinalizacion" class="form-label">Fecha de Finalización</label>
+                            <input type="date" class="form-control" id="editFechaFinalizacion" name="Proyecto.FechaFinalizacion" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editEstado" class="form-label">Estado</label>
+                            <select class="form-select" id="editEstado" name="Proyecto.Estado" required>
+                                <option value="1">Activo</option>
+                                <option value="2">Inactivo</option>
+                                <option value="3">Pendiente</option>
+                                <option value="4">Suspendido</option>
+                            </select>
+                        </div>
+                        <input type="hidden" id="editIdProyecto" name="Proyecto.Id">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary" form="editForm">Guardar Cambios</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </main>
-<script type="text/javascript">
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var editModal = document.getElementById('editModal');
+        editModal.addEventListener('show.bs.modal', function (event) {
+            var button = event.relatedTarget;
+            var id = button.getAttribute('data-id');
+            var nombre = button.getAttribute('data-nombre');
+            var codigoPostal = button.getAttribute('data-codigopostal');
+            var fechaInicio = button.getAttribute('data-fechainicio');
+            var fechaFinalizacion = button.getAttribute('data-fechafinalizacion');
+            var estado = button.getAttribute('data-estado');
+
+            var modalTitle = editModal.querySelector('.modal-title');
+            var idInput = editModal.querySelector('#editIdProyecto');
+            var nombreInput = editModal.querySelector('#editNombre');
+            var codigoPostalInput = editModal.querySelector('#editCodigoPostal');
+            var fechaInicioInput = editModal.querySelector('#editFechaInicio');
+            var fechaFinalizacionInput = editModal.querySelector('#editFechaFinalizacion');
+            var estadoInput = editModal.querySelector('#editEstado');
+
+            modalTitle.textContent = 'Editar Proyecto: ' + nombre;
+            idInput.value = id;
+            nombreInput.value = nombre;
+            codigoPostalInput.value = codigoPostal;
+            fechaInicioInput.value = fechaInicio;
+            fechaFinalizacionInput.value = fechaFinalizacion;
+            estadoInput.value = estado;
+        });
+    });
 
 </script>

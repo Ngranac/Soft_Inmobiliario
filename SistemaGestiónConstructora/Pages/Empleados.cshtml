@@ -2,3 +2,119 @@
 @model SistemaGestiónConstructora.Pages.EmpleadosModel
 @{
 }
+<main>
+    <br />
+    <h4 class="titulos_azul">Información Empleados</h4>
+    <br>
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-7">
+                    <h4>Empleados</h4>
+                </div>
+                <div class="col-md-3">
+                    <div class="input-group">
+                        <div class="form-outline" data-mdb-input-init>
+                            <input type="search" id="search-inputEmpleados" class="form-control" />
+                            <label class="form-label" for="search-inputEmpleados">Buscar Empleados</label>
+                        </div>
+                        <button type="button" class="btn btn-primary">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <button type="button" data-bs-toggle="modal" data-bs-target="#createModal" class="btn btn-outline-primary" data-mdb-ripple-init data-mdb-ripple-color="dark">
+                        <i class="fa-solid fa-plus"></i>&ensp;Asignar Empleado
+                    </button>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table id="Empleados" class="table align-middle mb-0 bg-white">
+                    <thead>
+                        <tr>
+                            <th>Id Empleado</th>
+                            <th>Nombre Completo</th>
+                            <th>Email Empresa</th>
+                            <th>Salario</th>
+                            <th>Código Postal</th>
+                            <th>Puesto</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var empleado in Model.Empleados)
+                        {
+                            <tr>
+                                <td>@empleado.IdEmpleado</td>
+                                <td>@empleado.NombreCompleto</td>
+                                <td>@empleado.EmailEmpresa</td>
+                                <td>@empleado.Salario</td>
+                                <td>@empleado.CodigoPostal</td>
+                                <td>@empleado.NombrePuesto</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="createModalLabel">Agregar Nuevo Empleado</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" asp-page-handler="Create">
+                        <div class="mb-3">
+                            <label for="IdEmpleado" class="form-label">Codigo del Empleado</label>
+                            <input type="number" class="form-control" id="IdEmpleado" name="IdEmpleado" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="IdUsuario" class="form-label">Identificacion del Usuario</label>
+                            <input type="number" class="form-control" id="IdUsuario" name="IdUsuario" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="NombreCompleto" class="form-label">Nombre Completo</label>
+                            <input type="text" class="form-control" id="NombreCompleto" name="NombreCompleto" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="EmailEmpresa" class="form-label">Email Empresa</label>
+                            <input type="email" class="form-control" id="EmailEmpresa" name="EmailEmpresa" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="Salario" class="form-label">Salario</label>
+                            <input type="number" class="form-control" id="Salario" name="Salario" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="CodigoPostal" class="form-label">Código Postal</label>
+                            <select class="form-control" id="codigoPostal" name="CodigoPostal" required>
+                                <option selected disabled value="">Seleccione una opción</option>
+                                @foreach (var codigo in Model.CodigosPostales)
+                                {
+                                    <option value="@codigo">@codigo</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="IdPuesto" class="form-label">Puesto</label>
+                            <select id="IdPuesto" name="IdPuesto" class="form-select" required>
+                                <option selected disabled>Seleccionar una Opción</option>
+                                @foreach (var puesto in Model.Puestos)
+                                {
+                                   
+                                    <option value="@puesto.IdPuesto">@puesto.NombrePuesto</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

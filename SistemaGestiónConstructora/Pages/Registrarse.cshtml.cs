@@ -40,6 +40,23 @@ namespace SistemaGestiónConstructora.Pages
             {
                 await connection.OpenAsync();
 
+                // verificar si el usuario ya existe
+                string checkUserQuery = "SELECT COUNT(*) FROM Usuarios WHERE id_Usuario = @Cedula OR correo = @Correo";
+                using (SqlCommand checkUserCommand = new SqlCommand(checkUserQuery, connection))
+                {
+                    checkUserCommand.Parameters.AddWithValue("@Cedula", Cedula);
+                    checkUserCommand.Parameters.AddWithValue("@Correo", Correo);
+
+                    int userExists = (int)await checkUserCommand.ExecuteScalarAsync();
+
+                    if (userExists > 0)
+                    {
+                        ModelState.AddModelError(string.Empty, "Las credenciales ya existen.");
+                        return Page();
+                    }
+                }
+
+                // Si el usuario no existe, proceder con la inserción
                 string query = "EXEC sp_InsertarUsuario @id_Usuario, @id_TipoUsuario, @id_Estado, @correo, @contrasenna";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {

@@ -2,3 +2,115 @@
 @model SistemaGestiónConstructora.Pages.FacturacionModel
 @{
 }
+<main>
+    <br />
+    <h4 class="titulos_azul">Modúlo de Facturación</h4>
+    <br>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#agregarFacturaModal">
+        Agregar Factura
+    </button>
+    <div class="container mt-4">
+        <div class="row">
+                @foreach (var factura in Model.Facturas)
+                {
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title">@factura.NombreFactura</h5>
+                            </div>
+                            <div class="card-body">
+                                <h6 class="card-subtitle mb-2 text-muted">Tipo de Factura: @factura.NombreTipoFactura</h6>
+                                <p class="card-text">Fecha de Emisión: @factura.FechaEmision.ToShortDateString()</p>
+                                <p class="card-text">Fecha de Vencimiento: @factura.FechaVencimiento.ToShortDateString()</p>
+                                <p class="card-text">Descripción: @factura.Descripcion</p>
+                                <p class="card-text">Proveedor: @factura.NombreProveedor</p>
+                                <p class="card-text">Correo: @factura.CorreoProveedor</p>
+                                <p class="card-text">Teléfono: @factura.TelefonoProveedor</p>
+                                <p><strong>Información Orden de compra</strong></p>
+                                <p class="card-text">@Html.Raw(factura.InformacionOrdenCompra)</p>
+                                <p class="card-text">Descripción Detalle Servicio: @factura.DescripcionDetalleServicio</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            
+       
+        </div>
+    </div>
+    <div class="modal fade" id="agregarFacturaModal" tabindex="-1" aria-labelledby="agregarFacturaModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="agregarFacturaModalLabel">Agregar Factura</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form method="post" asp-page-handler="AgregarFactura">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="IdFactura" class="form-label">ID Factura</label>
+                            <input type="number" class="form-control" id="IdFactura" name="NuevaFactura.IdFactura" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="NombreFactura" class="form-label">Nombre Factura</label>
+                            <input type="text" class="form-control" id="NombreFactura" name="NuevaFactura.NombreFactura" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="IdTipoFactura" class="form-label">Tipo de Factura</label>
+                            <select class="form-select" id="IdTipoFactura" name="NuevaFactura.IdTipoFactura" required>
+                                <option value="">Selecciona un tipo de factura</option>
+                                @foreach (var tipo in Model.TiposFactura)
+                                {
+                                    <option value="@tipo.Value">@tipo.Text</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="FechaEmision" class="form-label">Fecha Emisión</label>
+                            <input type="date" class="form-control" id="FechaEmision" name="NuevaFactura.FechaEmision" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="FechaVencimiento" class="form-label">Fecha Vencimiento</label>
+                            <input type="date" class="form-control" id="FechaVencimiento" name="NuevaFactura.FechaVencimiento" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="Descripcion" class="form-label">Descripción</label>
+                            <textarea class="form-control" id="Descripcion" name="NuevaFactura.Descripcion" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="IdProveedor" class="form-label">Proveedor</label>
+                            <select class="form-select" id="IdProveedor" name="NuevaFactura.IdProveedor" required>
+                                <option value="">Selecciona un proveedor</option>
+                                @foreach (var proveedor in Model.Proveedores)
+                                {
+                                    <option value="@proveedor.Value">@proveedor.Text</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="IdentificacionJuridica" class="form-label">Identificación Jurídica</label>
+                            <input type="number" class="form-control" id="IdentificacionJuridica" name="NuevaFactura.IdentificacionJuridica" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="IdDetalleServicio" class="form-label">ID Detalle Servicio</label>
+                            <input type="number" class="form-control" id="IdDetalleServicio" name="NuevaFactura.IdDetalleServicio" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="IdOrdenCompra" class="form-label">Orden de Compra</label>
+                            <select class="form-select" id="IdOrdenCompra" name="NuevaFactura.IdOrdenCompra" required>
+                                <option value="">Selecciona una orden de compra</option>
+                                @foreach (var orden in Model.OrdenesCompra)
+                                {
+                                    <option value="@orden.Value">@orden.Text</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
