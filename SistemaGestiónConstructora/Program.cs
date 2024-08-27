@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using System;
 using System.Data.SqlClient;
 
@@ -5,6 +6,14 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/Index"; // Ruta de inicio de sesión
+        options.LogoutPath = "/Logout"; // Ruta de cierre de sesión
+        options.AccessDeniedPath = "/AccessDenied"; // Ruta cuando el acceso está denegado
+    });
 
 var app = builder.Build();
 

@@ -58,12 +58,6 @@
                     <label>Empleados</label>
                 </div>
             </a>
-            <a asp-page="/Configuracion">
-                <div class="option">
-                    <i class="fa-light fa-gear" title="Configuracion"></i>
-                    <label>Configuración</label>
-                </div>
-            </a>
 
             <a asp-page="/Logout">
                 <div class="option">
@@ -250,10 +244,61 @@
             });
         });
 
+        $(document).ready(function () {
+            var table = $('#facturas').DataTable({
+                info: false,
+                ordering: true,
+                dom: 'Brtip',
+                buttons: [
+
+                    {
+                        extend: 'csv',
+                        text: '<button class="btnTableSecond"><i class="fa-light fa-file-csv"></i></button>',
+                    },
+                    {
+                        extend: 'excel',
+                        text: '<button class="btnTableprimary"><i class="fa-light fa-file-xls"></i></button>',
+                    },
+                    {
+                        extend: 'pdf',
+                        text: '<button class="btnTableSecond"><i class="fa-light fa-file-pdf"></i></button>',
+                    },
+                ],
+                responsive: true,
+                language: {
+                    "decimal": "",
+                    "emptyTable": "No hay información",
+                    "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+                    "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+                    "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+                    "infoPostFix": "",
+                    "thousands": ",",
+                    "lengthMenu": "Mostrar _MENU_ Entradas",
+                    "loadingRecords": "Cargando...",
+                    "processing": "Procesando...",
+                    "search": "Buscar:",
+                    "zeroRecords": "Sin resultados encontrados",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Ultimo",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                },
+            });
+            $(document).ready(function () {
+                var table = $('#facturas').DataTable(); // Inicializar el datatable
+                $("#search-inputfacturas").on("input", function () {
+                    var value = $(this).val().toLowerCase();
+                    // Filtrar en todas las páginas
+                    table.search(value).draw();
+                });
+            });
+        });
 
         
         $(document).ready(function () {
-            var table = $('#Archivos').DataTable({
+            var table = $('#MaterialesBodegas').DataTable({
 
                 info: false,
                 ordering: true,
@@ -303,6 +348,14 @@
                         "previous": "Anterior"
                     }
                 },
+            });
+            $(document).ready(function () {
+                var table = $('#MaterialesBodegas').DataTable(); // Inicializar el datatable
+                $("#search-inputBodegas").on("input", function () {
+                    var value = $(this).val().toLowerCase();
+                    // Filtrar en todas las páginas
+                    table.search(value).draw();
+                });
             });
         });
 

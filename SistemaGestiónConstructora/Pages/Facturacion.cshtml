@@ -6,9 +6,9 @@
     <br />
     <h4 class="titulos_azul">Modúlo de Facturación</h4>
     <br>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#agregarFacturaModal">
+@*     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#agregarFacturaModal">
         Agregar Factura
-    </button>
+    </button> *@
     <div class="container mt-4">
         <div class="row">
                 @foreach (var factura in Model.Facturas)
@@ -60,7 +60,7 @@
                                 <option value="">Selecciona un tipo de factura</option>
                                 @foreach (var tipo in Model.TiposFactura)
                                 {
-                                    <option value="@tipo.Value">@tipo.Text</option>
+                                    <option value="@tipo.IdTipoFactura">@tipo.Nombre</option>
                                 }
                             </select>
                         </div>
@@ -82,13 +82,13 @@
                                 <option value="">Selecciona un proveedor</option>
                                 @foreach (var proveedor in Model.Proveedores)
                                 {
-                                    <option value="@proveedor.Value">@proveedor.Text</option>
+                                    <option value="@proveedor.IdProveedor">@proveedor.NombreProveedor</option>
                                 }
                             </select>
                         </div>
                         <div class="mb-3">
                             <label for="IdentificacionJuridica" class="form-label">Identificación Jurídica</label>
-                            <input type="number" class="form-control" id="IdentificacionJuridica" name="NuevaFactura.IdentificacionJuridica" required>
+                            <input type="text" class="form-control" id="IdentificacionJuridica" name="NuevaFactura.IdentificacionJuridica" required>
                         </div>
                         <div class="mb-3">
                             <label for="IdDetalleServicio" class="form-label">ID Detalle Servicio</label>
@@ -100,7 +100,7 @@
                                 <option value="">Selecciona una orden de compra</option>
                                 @foreach (var orden in Model.OrdenesCompra)
                                 {
-                                    <option value="@orden.Value">@orden.Text</option>
+                                    <option value="@orden.IdOrdenCompra">@orden.IdOrdenCompra</option>
                                 }
                             </select>
                         </div>

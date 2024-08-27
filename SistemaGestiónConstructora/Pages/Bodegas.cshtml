@@ -2,3 +2,147 @@
 @model SistemaGestiónConstructora.Pages.BodegasModel
 @{
 }
+<main>
+    <br />
+    <h4 class="titulos_azul">Información Materiales en Bodegas</h4>
+    <br>
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4">
+                    <h4> Materiales en Bodegas</h4>
+                </div>
+                <div class="col-md-3">
+                    <div class="input-group">
+                        <div class="form-outline" data-mdb-input-init>
+                            <input type="search" id="search-inputBodegas" class="form-control" />
+                            <label class="form-label" for="search-inputBodegas">Buscar</label>
+                        </div>
+                        <button type="button" class="btn btn-primary">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <button type="button" data-bs-toggle="modal" data-bs-target="#agregarMaterialModal" class="btn btn-outline-primary" data-mdb-ripple-init data-mdb-ripple-color="dark"><i class="fa-solid fa-plus"></i>&ensp;Agregar Materiales</button>
+
+                </div>
+                <div class="col-md-3">
+                    <button type="button" data-bs-toggle="modal" data-bs-target="#agregarMaterialBodegaModal" class="btn btn-primary" ><i class="fa-solid fa-plus"></i>&ensp;Agregar Material a Bodega</button>
+
+                </div>
+            </div>
+            <br />
+            <div class="table-responsive">
+                <table id="MaterialesBodegas" class="table align-middle mb-0 bg-white">
+                    <thead>
+                        <tr>
+                            <th>ID Material Bodega</th>
+                            <th>ID Material</th>
+                            <th>ID Bodega</th>
+                            <th>Cantidad</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.MaterialesBodegas)
+                        {
+                            <tr>
+                                <td>@item.Id</td>
+                                <td>@item.NombreMaterial</td>
+                                <td>@item.NombreBodega</td>
+                                <td>@item.Cantidad</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="agregarMaterialModal" tabindex="-1" aria-labelledby="agregarMaterialModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="agregarMaterialModalLabel">Agregar Nuevo Material</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" asp-page-handler="Create">
+                        <div class="mb-3">
+                            <label for="idMaterial" class="form-label">ID del Material</label>
+                            <input type="number" class="form-control" id="idMaterial" name="idMaterial" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="nombreMaterial" class="form-label">Nombre del Material</label>
+                            <input type="text" class="form-control" id="nombreMaterial" name="nombreMaterial" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="proveedor" class="form-label">Proveedor</label>
+                            <select class="form-select" id="proveedor" name="idProveedor" required>
+                                <option value="">Seleccione un proveedor</option>
+                                @foreach (var proveedor in Model.Proveedores)
+                                {
+                                    <option value="@proveedor.IdProveedor">@proveedor.NombreProveedor</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="descripcion" class="form-label">Descripción</label>
+                            <input type="text" class="form-control" id="descripcion" name="descripcion">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-primary">Agregar Material</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="agregarMaterialBodegaModal" tabindex="-1" aria-labelledby="agregarMaterialBodegaModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="agregarMaterialBodegaModalLabel">Agregar Material a Bodega</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" asp-page-handler="CreateMaterialBodega">
+                        <div class="mb-3">
+                            <label for="idMaterialBodega" class="form-label">ID del Material Bodega</label>
+                            <input type="number" class="form-control" id="idMaterialBodega" name="idMaterialBodega" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="idMaterial" class="form-label">ID del Material</label>
+                            <select class="form-select" id="idMaterial" name="idMaterial" required>
+                                <option value="">Seleccione Material</option>
+                                @foreach (var material in Model.Materiales)
+                                {
+                                    <option value="@material.IdMateriales">@material.NombreMaterial</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="idBodega" class="form-label">ID de la Bodega</label>
+                            <select class="form-select" id="idBodega" name="idBodega" required>
+                                <option value="">Seleccione una bodega</option>
+                                @foreach (var bodega in Model.Bodegas)
+                                {
+                                    <option value="@bodega.IdBodega">@bodega.NombreBodega</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="cantidad" class="form-label">Cantidad</label>
+                            <input type="number" class="form-control" id="cantidad" name="cantidad" required>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-primary">Agregar Material a Bodega</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
